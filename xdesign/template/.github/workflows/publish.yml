@@ -25,6 +25,21 @@ jobs:
     - name: Build
       run: |
         npm --prefix ../designer run build -- "${PWD##*/}"
+    - name: Meta HTLM
+      run: |
+        cat <<html\> >> ../designer/dist/index.html
+          <!doctype html>
+          <html>
+            <head>
+              <title>Design xdesigntemplate</title>
+            </head>
+            <body>
+              <p>Design xdesigntemplate version <strong>${{ github.sha }}</strong>. Preview <a href="https://i.rathnas.com/?iid=demo&preview=xdesigntemplate">https://i.rathnas.com/?iid=demo&preview=xdesigntemplate</a></p>
+            </body>
+          </html>
+    - name: Meta TXT
+      run: |
+        echo "${{ github.sha }}" >> ../designer/dist/version.txt
     - name: Deploy
       uses: crazy-max/ghaction-github-pages@v1.2.2
       if: success()
