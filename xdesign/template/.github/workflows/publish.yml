@@ -1,0 +1,37 @@
+name: Node CI
+on: 
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Checkout designer
+      run: |
+        (cd ../ && git clone https://github.com/nesign/designer.git)
+    - name: Dependencies
+      run: |
+        npm --prefix ../designer ci
+        npm ci --if-present
+    - name: Build
+      run: |
+        npm --prefix ../designer run build -- "${PWD##*/}"
+    - name: Deploy
+      uses: crazy-max/ghaction-github-pages@v1.2.2
+      if: success()
+      with:
+        repo: nesign/xdesigntemplate
+        build_dir: ../designer/dist/assets
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
+        CI: true

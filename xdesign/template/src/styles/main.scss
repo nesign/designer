@@ -1,0 +1,72 @@
+/* Custom styles  goes here */
+
+/* Custom styles  goes here */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto|Pacifico|Chilanka|Comfortaa);
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+img {
+  max-width: 100%;
+}
+
+section {
+  border-bottom: 10vh;
+}
+
+@media (max-width: 575.98px) {
+
+  //Manage Display Headers for Mobile Devices
+  .display-1 {
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1.0;
+  }
+
+  .display-2 {
+    font-size: 2.75rem;
+    font-weight: 300;
+    line-height: 1.0;
+  }
+
+  .display-3 {
+    font-size: 2.25rem;
+    font-weight: 300;
+    line-height: 1.0;
+  }
+
+  .display-4 {
+    font-size: 1.75rem;
+    font-weight: 300;
+    line-height: 1.0;
+  }
+}
+
+.fade-in {
+  animation: fadein 1 ease-in 1s;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.pacifico {
+  font-family: Pacifico, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.roboto {
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.chilanka {
+  font-family: Chilanka, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.comforta {
+  font-family: Comfortaa, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}

@@ -1,0 +1,97 @@
+<!-- Custom template goes here -->
+<div class="py-3 container fade-in">
+  {{#if guest}}
+  <section class="guest mb-4">
+    <div class="guest-container d-flex justify-content-center text-muted text-small text-dark bg-none">
+      <span class="guest-name">{{guest.name}},</span>
+    </div>
+  </section>
+  {{/if}}
+
+  <section class="main">
+    <div class="jumbotron bg-white shadow-lg">
+      <h1 class="pacifico display-1 text-center">{{invite.title}}</h1>
+      <div class="roboto lead text-center">{{invite.shortMsg}}</div>
+    </div>
+    {{#if mainPhoto}}
+    <div class="card mb-3">
+      <div class="row no-gutters">
+        <div class="col-12">
+          <img class="main-img" src="{{mainPhoto.url}}" alt="{{mainPhoto.title}}">
+        </div>
+        <div class="col-12 d-flex align-items-end">
+          <div class="card-body comforta">
+            <h3 class="card-title">{{mainPhoto.title}}</h3>
+            <p class="card-text">{{mainPhoto.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/if}}
+  </section>
+
+
+  {{#if longMsg}}
+  <section class="long-msg bg-info my-5 py-5 shadow-sm">
+    <div class="long-msg text-center chilanka">
+      {{{longMsg}}}
+    </div>
+  </section>
+  {{/if}}
+
+  {{#if sliderPhotos}}
+  <section class="slider">
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        {{#each sliderPhotos}}
+        {{# if @first}}
+        <li data-target="#carousel" data-slide-to="{{@index}}" class="active"></li>
+        {{else}}
+        <li data-target="#carousel" data-slide-to="{{@index}}"></li>
+        {{/if}}
+        {{/each}}
+      </ol>
+      <div class="carousel-inner">
+        {{#each sliderPhotos}}
+        <div class="carousel-item {{# if @first}}active{{/if}}">
+          <img class="d-block w-100" src="{{url}}" alt="{{title}}">
+          <div class="carousel-caption d-none d-md-block bg-light text-dark comforta">
+            <h5>{{title}}</h5>
+            <p>{{description}}</p>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </section>
+  {{/if}}
+
+  <section class="details mt-5">
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="card text-white bg-dark">
+          <div class="card-body">
+            <h5 class="card-title">Venue</h5>
+            <p class="card-text">{{invite.addrText}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="card text-white bg-dark">
+          <div class="card-body">
+            <h5 class="card-title">Time</h5>
+            <p class="card-text">{{invite.timeFromString}} - {{endsat invite}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
