@@ -15,9 +15,10 @@
     </div>
     {{#if mainPhoto}}
     <div class="card mb-3">
+      <img class="main-img" src="{{mainPhoto.url}}" alt="{{mainPhoto.title}}">
+      {{#if mainPhoto.title}}
       <div class="row no-gutters">
         <div class="col-12">
-          <img class="main-img" src="{{mainPhoto.url}}" alt="{{mainPhoto.title}}">
         </div>
         <div class="col-12 d-flex align-items-end">
           <div class="card-body comforta">
@@ -26,6 +27,7 @@
           </div>
         </div>
       </div>
+      {{/if}}
     </div>
     {{/if}}
   </section>
