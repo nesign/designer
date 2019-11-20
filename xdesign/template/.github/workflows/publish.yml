@@ -25,6 +25,8 @@ jobs:
     - name: Build
       run: |
         npm --prefix ../designer run build -- "${PWD##*/}"
+        sed -i'' "s:<link href=\"default.css\" rel=\"stylesheet\">::g" ../designer/dist/assets/default.html
+        sed -i'' "s:<script type=\"text/javascript\" src=\"default.js\"></script>::g" ../designer/dist/assets/default.html
     - name: Meta HTLM
       run: |
         cat <<html\> >> ../designer/dist/index.html
