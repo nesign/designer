@@ -1,9 +1,12 @@
 /* Custom styles  goes here */
 
-/* Custom styles  goes here */
-
 @import url(https://fonts.googleapis.com/css?family=Roboto|Pacifico|Chilanka|Comfortaa);
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+.body {
+  /* fallback if .bgphoto is empty */
+  background-color: #111;
+}
 
 img {
   max-width: 100%;
