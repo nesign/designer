@@ -7,7 +7,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "f(){ webpack-dev-server --env.DESIGN=$1 --mode=development --progress --open-page \"https://nesign.github.io/designer\"; };f",
+    "start": "f(){ webpack-dev-server --env.DESIGN=$1 --mode=development --progress --open-page \"https://nesign.github.io/designer/?design=$1\"; };f",
     "build": "f(){ webpack --env.DESIGN=$1 --mode production;};f"
   },
   "keywords": [
