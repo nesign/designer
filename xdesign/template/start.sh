@@ -37,9 +37,13 @@ if ! [ -x "$(command -v mkcert)" ]; then
     exit 1
   fi
 fi
+# If localhost.pem not available install new certs
 # Install localhost cert using mkcert
-(cd ../designer && mkcert localhost)
-
+if [ -f "../designer/localhost.pem" ]; then
+  echo "skipping localhost certs"
+else
+  (cd ../designer && mkcert localhost)
+fi
 
 
 
