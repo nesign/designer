@@ -42,6 +42,9 @@ jobs:
     - name: Meta TXT
       run: |
         echo "${{ github.sha }}" >> ../designer/dist/version.txt
+    - name: Screenshots
+      run: |
+        [ -d "./screenshots" ] && cp -r ./screenshots ../designer/dist/
     - name: Deploy
       uses: crazy-max/ghaction-github-pages@v1.2.2
       if: success()

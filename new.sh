@@ -73,6 +73,10 @@ fi
 
 # Create dir for screenshots
 mkdir -p "$designDir/screenshots"
+touch "$designDir/screenshots/thumbnail-lg.png"
+touch "$designDir/screenshots/thumbnail-xs.png"
+
+
 
 
 # Instructions
