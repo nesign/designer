@@ -71,83 +71,10 @@ fi
 
 
 
+# Create dir for screenshots
+mkdir -p "$designDir/screenshots"
+
+
 # Instructions
 echo "$1 Created successfully."
 echo "Next step: cd to $1 and execute ./start.sh"
-
-
-
-
-
-
-
-
-
-
-exit 0
-
-
-
-
-# If designer dir not available, git clone it
-if [ -d "../designer" ]; then
-    echo "designer exists."
-else
-    (cd ../ && git clone https://github.com/nesign/designer.git)
-fi
-
-
-
-
-# If local.sh is different from designer's version throw a WARNING
-# cmp Ref: https://stackoverflow.com/a/53529649/234110
-# basename Ref: https://unix.stackexchange.com/a/198926/65538
-LOCALSHCOMPARE="$(cmp -s $0 "../designer/xdesign/$(basename -- "$0")"; echo $?)"
-if [ $LOCALSHCOMPARE -ne 0 ]; then
-  echo "WARN: $(basename -- "$0") files are different, check if you need to ##=> cp ../designer/$(basename -- "$0") $0"
-fi
-
-
-
-
-# If mkcert not available install it
-# command Ref: https://stackoverflow.com/a/26759734/234110
-# previous command success check Ref: https://askubuntu.com/a/29379/126417
-if ! [ -x "$(command -v mkcert)" ]; then
-  brew install mkcert
-  # If install unsuccessful, abort
-  if [ $? -eq 0 ]; then
-    echo "Installed mkcert"
-  else
-    echo "Unable to install mkcert, to manually install and proceed, refer https://github.com/FiloSottile/mkcert "
-    exit 1
-  fi
-fi
-# Install localhost cert using mkcert
-(cd ../designer && mkcert localhost)
-
-
-
-
-# npm Install for designer
-npm --prefix ../designer i
-
-
-
-
-# npm Install for design if design package.json exists
-# File exists Ref: https://stackoverflow.com/a/40082454/234110
-if [ -e "./package.json" ]; then
-  npm i
-else
-  echo "WARN: Can't find package.json in ${PWD##*/}, skipping npm install."
-fi
-
-
-
-
-# npm start for current designer
-# pass args to package.json Ref: https://github.com/npm/npm/pull/5518#issuecomment-312459196
-# pass args to webpack Ref: https://webpack.js.org/guides/environment-variables/
-# current dir name Ref: 
-npm --prefix ../designer start -- "${PWD##*/}"
