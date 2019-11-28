@@ -28,12 +28,22 @@ fi
 # command Ref: https://stackoverflow.com/a/26759734/234110
 # previous command success check Ref: https://askubuntu.com/a/29379/126417
 if ! [ -x "$(command -v mkcert)" ]; then
-  brew install mkcert
-  # If install unsuccessful, abort
-  if [ $? -eq 0 ]; then
-    echo "Installed mkcert"
+  if [ -x "$(command -v curl)" ]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+    if [ $? -eq 0 ]; then
+      brew install mkcert
+      # If install unsuccessful, abort
+      if [ $? -eq 0 ]; then
+        echo "Installed mkcert"
+      else
+        echo "Unable to install mkcert, to manually install and proceed, refer https://github.com/FiloSottile/mkcert"
+        exit 1
+      fi
+    else
+      echo "Unable to install LinuxBrew, refer https://github.com/Linuxbrew/install"
+    fi
   else
-    echo "Unable to install mkcert, to manually install and proceed, refer https://github.com/FiloSottile/mkcert "
+    echo "Unable to find curl, install curl and retry"
     exit 1
   fi
 fi
@@ -42,7 +52,7 @@ fi
 if [ -f "../designer/localhost.pem" ]; then
   echo "skipping localhost certs"
 else
-  (cd ../designer && mkcert localhost)
+  (cd ../designer && mkcert localhost && mkcert -install)
 fi
 
 
