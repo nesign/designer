@@ -15,18 +15,13 @@
     </div>
     {{#if mainPhoto}}
     <div class="card mb-3">
+      {{#if mainPhoto}}
+      {{#if isVideoInvite}}
+      <iframe class="embed-responsive-item" width="560" height="315" src="{{mainPhoto.url}}"
+        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      {{else}}
       <img class="card-img-top" src="{{mainPhoto.url}}" alt="{{mainPhoto.title}}">
-      {{#if mainPhoto.title}}
-      <div class="row no-gutters">
-        <div class="col-12">
-        </div>
-        <div class="col-12 d-flex align-items-end">
-          <div class="card-body comforta">
-            <h3 class="card-title">{{mainPhoto.title}}</h3>
-            <p class="card-text">{{mainPhoto.description}}</p>
-          </div>
-        </div>
-      </div>
+      {{/if}}
       {{/if}}
     </div>
     {{/if}}
