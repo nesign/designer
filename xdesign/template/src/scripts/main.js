@@ -2,6 +2,12 @@ const $ = require('jquery');
 const jQuery = $;
 const bootstrap = require('bootstrap');
 
+const isVideo = function (url) {
+  return url && url.startsWith('https://youtube.com/')
+    || url.startsWith('https://www.youtube.com/')
+    || url.startsWith('https://youtu.be/');
+}
+
 document.addEventListener('invite', (event) => {
   const invite = event.detail;
   if (invite) {
