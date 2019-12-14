@@ -21,6 +21,8 @@ if ! [ -x "$(command -v mkcert)" ]; then
   if [ -x "$(command -v curl)" ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
     if [ $? -eq 0 ]; then
+      echo -e '\nPATH=/home/linuxbrew/.linuxbrew/bin/:$PATH\n' | tee --append ~/.profile
+      source ~/.profile
       brew install mkcert
       # If install unsuccessful, abort
       if [ $? -eq 0 ]; then
