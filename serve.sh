@@ -21,8 +21,13 @@ if ! [ -x "$(command -v mkcert)" ]; then
   if [ -x "$(command -v curl)" ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
     if [ $? -eq 0 ]; then
-      echo -e '\nPATH=/home/linuxbrew/.linuxbrew/bin/:$PATH\n' | tee --append ~/.profile
-      source ~/.profile
+      if ! [ -x "$(command -v brew)" ]; then
+        echo -e '\nexport PATH=/home/linuxbrew/.linuxbrew/bin/:$PATH\n' | tee --append ~/.profile
+        source ~/.profile
+      fi
+      if ! [ -x "$(command -v certutil)" ]; then
+        sudo apt install libnss3-tools
+      fi
       brew install mkcert
       # If install unsuccessful, abort
       if [ $? -eq 0 ]; then
