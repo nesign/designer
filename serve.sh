@@ -27,6 +27,9 @@ if ! [ -x "$(command -v mkcert)" ]; then
       fi
       if ! [ -x "$(command -v certutil)" ]; then
         sudo apt install libnss3-tools
+        if ! [ $? -eq 0 ]; then
+          echo -e "Error: sudo apt install libnss3-tools"
+        fi
       fi
       brew install mkcert
       # If install unsuccessful, abort
