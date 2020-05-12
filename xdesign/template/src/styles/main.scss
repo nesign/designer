@@ -3,6 +3,15 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto|Pacifico|Chilanka|Comfortaa);
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 
+$default-font-family: -apple-system,
+system-ui,
+BlinkMacSystemFont,
+"Segoe UI",
+Roboto,
+"Helvetica Neue",
+Arial,
+sans-serif;
+
 body {
   /* fallback if .bgphoto is empty */
   background-color: #111;
@@ -58,18 +67,42 @@ section {
   }
 }
 
-.pacifico {
-  font-family: Pacifico, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+/* Defaults for Customizables */
+#titleJumbotron {
+  background: none;
+
+  #title {
+    text-shadow: 2px 5px 5px #fff;
+    font-family: Pacifico, $default-font-family;
+  }
+
+  #shortMsg {
+    font-family: Roboto, $default-font-family;
+  }
 }
 
-.roboto {
-  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+#longMsg {
+  font-family: Chilanka, $default-font-family;
 }
 
-.chilanka {
-  font-family: Chilanka, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
+#addrTextCard,
+#timeCard {
+  background: none;
+  @extend .shadow;
+  @extend .border-0;
 
-.comforta {
-  font-family: Comfortaa, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  #timeTitle,
+  #addrTextTitle {
+    font-size: 12px;
+    color: #111;
+    text-align: right;
+    border-bottom: 1px solid #111;
+    font-family: Comfortaa, $default-font-family;
+  }
+
+  #time,
+  #addrText {
+    font-family: Pacifico, $default-font-family;
+    font-size: 18px;
+  }
 }
